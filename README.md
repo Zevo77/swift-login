@@ -1,4 +1,15 @@
-Swift Login 是一个功能丰富的 WordPress 登录增强插件，主要功能包括：
+*Swift Login*
+为 WordPress 提供 Passkey 无密码登录、登录页面美化，以及聚合社会化登录功能。
+
+插件正在接受Wordpress Team审查
+
+**社会化登录配置**
+
+1. 前往 https://u.zevost.com 注册账号并创建应用
+2. 获取 App ID 和 App Key
+3. 在插件设置中填入 App ID 和 App Key
+4. 在知我云后台将回调地址设置为插件显示的回调地址
+5. 选择需要启用的登录平台
 
 **Passkey 无密码登录**
 * 基于 WebAuthn 标准的 Passkey 登录
@@ -18,13 +29,7 @@ Swift Login 是一个功能丰富的 WordPress 登录增强插件，主要功能
 * 未绑定用户可自动注册
 * 灵活的回调地址配置
 
-== Installation ==
-
-1. 上传插件文件夹到 `/wp-content/plugins/Swift-Login` 目录
-2. 在 WordPress 后台「插件」页面激活插件
-3. 进入「设置 > Swift Login」配置插件
-
-== 短代码 ==
+**短代码**
 
 插件提供以下短代码，可用于主题模板或页面编辑器中，将登录按钮嵌入任意位置：
 
@@ -38,19 +43,3 @@ Swift Login 是一个功能丰富的 WordPress 登录增强插件，主要功能
 
     [swift_passkey_button]
     [swift_social_buttons]
-
-== 社会化登录配置 ==
-
-1. 前往 https://u.zevost.com 注册账号并创建应用
-2. 获取 App ID 和 App Key
-3. 在插件设置中填入 App ID 和 App Key
-4. 在知我云后台将回调地址设置为插件显示的回调地址
-5. 选择需要启用的登录平台
-
-== Changelog ==
-
-= 1.0.0 =
-* 初始版本发布
-* Passkey 登录注册功能
-* 登录页面美化
-* 聚合社会化登录集成
