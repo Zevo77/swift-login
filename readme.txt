@@ -1,0 +1,70 @@
+=== Swift Login ===
+Contributors: Zevo
+Tags: passkey, webauthn, login, social login, login page
+Requires at least: 6.0
+Tested up to: 6.9
+Requires PHP: 7.4
+Stable tag: 1.0.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+Swift Login 为 WordPress 提供 Passkey 无密码登录、登录页面美化，以及聚合社会化登录功能。
+
+== Description ==
+
+Swift Login 是一个功能丰富的 WordPress 登录增强插件，主要功能包括：
+
+**Passkey 无密码登录**
+* 基于 WebAuthn 标准的 Passkey 登录
+* 支持 Face ID、Touch ID、Windows Hello 等生物识别
+* 用户可在个人资料页管理多个 Passkey
+* 支持 ES256 和 RS256 凭据
+
+**登录页面美化**
+* 现代化卡片式登录界面
+* 可自定义 Logo、背景色、按钮色等
+* 支持自定义 CSS
+* 响应式设计
+
+**社会化登录（可选）**
+* 对接知我云聚合登录 (u.zevost.com)
+* 支持 QQ、微信、支付宝、微博、GitHub、Google 等 14 个平台
+* 未绑定用户可自动注册
+* 灵活的回调地址配置
+
+== Installation ==
+
+1. 上传插件文件夹到 `/wp-content/plugins/Swift-Login` 目录
+2. 在 WordPress 后台「插件」页面激活插件
+3. 进入「设置 > Swift Login」配置插件
+
+== 短代码 ==
+
+插件提供以下短代码，可用于主题模板或页面编辑器中，将登录按钮嵌入任意位置：
+
+**[swift_passkey_button]**
+输出 Passkey 登录按钮。适合嵌入自定义登录页面或侧边栏。
+
+**[swift_social_buttons]**
+输出社会化登录按钮组（需先在设置中启用社会化登录并完成配置）。
+
+示例：
+
+    [swift_passkey_button]
+    [swift_social_buttons]
+
+== 社会化登录配置 ==
+
+1. 前往 https://u.zevost.com 注册账号并创建应用
+2. 获取 App ID 和 App Key
+3. 在插件设置中填入 App ID 和 App Key
+4. 在知我云后台将回调地址设置为插件显示的回调地址
+5. 选择需要启用的登录平台
+
+== Changelog ==
+
+= 1.0.0 =
+* 初始版本发布
+* Passkey 登录注册功能
+* 登录页面美化
+* 聚合社会化登录集成
