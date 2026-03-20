@@ -163,6 +163,7 @@ body.login .wp-core-ui .button-primary:hover {
 /* Social login buttons */
 .swift-login-social-wrap {
     margin-top: 4px;
+    margin-bottom: 8px;
 }
 
 .swift-login-social-buttons {
@@ -339,6 +340,69 @@ body.login .wp-core-ui .button-primary:hover {
 .swift-unbind-social:hover {
     background: #b32d2e !important;
     color: #fff !important;
+}
+
+/* =====================
+   Social Button Styles
+   ===================== */
+
+/* Style: icon-text (default) — already handled by base .swift-login-social-buttons grid */
+
+/* Style: icon-only */
+.swift-social-style-icon-only {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.swift-social-style-icon-only .swift-social-btn {
+    width: 44px;
+    height: 44px;
+    min-width: 0;
+    padding: 0;
+    border-radius: 50%;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.swift-social-style-icon-only .swift-social-btn img {
+    width: 22px;
+    height: 22px;
+}
+
+.swift-social-style-icon-only .swift-social-btn span {
+    display: none;
+}
+
+/* Style: list */
+.swift-social-style-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.swift-social-style-list .swift-social-btn {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 16px;
+    gap: 12px;
+    margin-bottom: 0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.swift-social-style-list .swift-social-btn img {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.swift-social-style-list .swift-social-btn span {
+    width: auto;
 }
 
 /* =====================

@@ -1,0 +1,323 @@
+# Chinese (Simplified) translation for Swift Login
+# Copyright (C) 2024 Zevo
+# This file is distributed under the same license as the Swift Login plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Swift Login 1.0.0\n"
+"Report-Msgid-Bugs-To: https://www.zevost.com\n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: Zevo <admin@zevost.com>\n"
+"Language-Team: Chinese (Simplified)\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Swift Login Settings"
+msgstr "Swift Login 设置"
+
+msgid "Settings saved."
+msgstr "设置已保存"
+
+msgid "Failed to save. Please try again."
+msgstr "保存失败，请重试"
+
+msgid "Saving…"
+msgstr "保存中…"
+
+msgid "Insufficient permissions."
+msgstr "权限不足"
+
+msgid "Invalid data format."
+msgstr "数据格式错误"
+
+msgid "Security check failed."
+msgstr "安全验证失败"
+
+msgid "You must be logged in to register a Passkey."
+msgstr "请先登录后再注册 Passkey"
+
+msgid "You must be logged in."
+msgstr "请先登录"
+
+msgid "Incomplete data."
+msgstr "数据不完整"
+
+msgid "Invalid challenge."
+msgstr "challenge 无效"
+
+msgid "Challenge mismatch or expired."
+msgstr "challenge 不匹配或已过期"
+
+msgid "This Passkey is already registered."
+msgstr "该 Passkey 已注册"
+
+msgid "Passkey %s"
+msgstr "Passkey %s"
+
+msgid "Failed to save Passkey."
+msgstr "保存失败"
+
+msgid "Passkey registered successfully."
+msgstr "Passkey 注册成功"
+
+msgid "Passkey not found."
+msgstr "未找到对应的 Passkey"
+
+msgid "User not found."
+msgstr "用户不存在"
+
+msgid "Login successful."
+msgstr "登录成功"
+
+msgid "Invalid parameter."
+msgstr "参数错误"
+
+msgid "Passkey deleted."
+msgstr "已删除"
+
+msgid "Failed to delete Passkey."
+msgstr "删除失败"
+
+msgid "Social login is not enabled."
+msgstr "社会化登录未启用"
+
+msgid "Social login is not configured. Please contact the administrator."
+msgstr "社会化登录尚未配置，请联系管理员"
+
+msgid "Could not connect to the login service."
+msgstr "无法连接到登录服务"
+
+msgid "Failed to get bind URL."
+msgstr "获取绑定地址失败"
+
+msgid "Account unlinked successfully."
+msgstr "解绑成功"
+
+msgid "Missing login platform parameter."
+msgstr "登录平台参数缺失"
+
+msgid "Unsupported login platform."
+msgstr "不支持的登录平台"
+
+msgid "Failed to get login URL."
+msgstr "获取登录地址失败"
+
+msgid "Missing callback parameters."
+msgstr "回调参数缺失"
+
+msgid "Social login configuration error."
+msgstr "社会化登录配置错误"
+
+msgid "Failed to retrieve user information."
+msgstr "获取用户信息失败"
+
+msgid "Username and password login is disabled. Please use Passkey or social login."
+msgstr "用户名密码登录已被禁用，请使用 Passkey 或社会化登录。"
+
+msgid "Social Login"
+msgstr "社会化登录"
+
+msgid "Redirecting, please wait…"
+msgstr "正在跳转，请稍候…"
+
+msgid "Login with Passkey"
+msgstr "使用 Passkey 登录"
+
+msgid "Register Passkey"
+msgstr "注册 Passkey"
+
+msgid "Your browser does not support Passkey."
+msgstr "您的浏览器不支持 Passkey"
+
+msgid "Login failed. Please try again."
+msgstr "登录失败，请重试"
+
+msgid "or"
+msgstr "或者"
+
+msgid "Passkey Management"
+msgstr "Passkey 管理"
+
+msgid "My Passkeys"
+msgstr "我的 Passkey"
+
+msgid "You have not registered any Passkeys yet."
+msgstr "您还没有注册任何 Passkey。"
+
+msgid "Unnamed device"
+msgstr "未命名设备"
+
+msgid "Added on %s"
+msgstr "添加于 %s"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Add New Passkey"
+msgstr "添加新 Passkey"
+
+msgid "Social Login Connections"
+msgstr "社会化登录绑定"
+
+msgid "Account linked successfully!"
+msgstr "绑定成功！"
+
+msgid "Connected Platforms"
+msgstr "绑定平台"
+
+msgid "Connected"
+msgstr "已绑定"
+
+msgid "Not connected"
+msgstr "未绑定"
+
+msgid "Unlink"
+msgstr "解绑"
+
+msgid "Link"
+msgstr "绑定"
+
+msgid "Passkey Settings"
+msgstr "Passkey 设置"
+
+msgid "Enable Passkey Login"
+msgstr "启用 Passkey 登录"
+
+msgid "User Verification Level"
+msgstr "用户验证级别"
+
+msgid "Preferred"
+msgstr "推荐"
+
+msgid "Required"
+msgstr "必须"
+
+msgid "Discouraged"
+msgstr "不要求"
+
+msgid "Timeout (seconds)"
+msgstr "超时时间（秒）"
+
+msgid "Disable Password Login"
+msgstr "禁用用户名密码登录"
+
+msgid "Warning: Once enabled, all users (including administrators) will not be able to log in with username and password. Make sure you have set up a Passkey or social login first."
+msgstr "⚠️ 危险：开启后所有用户（包括管理员）将无法使用用户名和密码登录，请确保您已设置 Passkey 或社会化登录后再开启。"
+
+msgid "Tip: Passkeys can be added and managed at the bottom of the WordPress user profile page."
+msgstr "提示：Passkey 可在 WordPress 用户资料页面底部进行添加和管理。"
+
+msgid "Login Page Customization"
+msgstr "登录页面美化"
+
+msgid "Enable Login Page Customization"
+msgstr "启用登录页美化"
+
+msgid "Custom Logo URL"
+msgstr "自定义 Logo URL"
+
+msgid "Background Color"
+msgstr "页面背景颜色"
+
+msgid "Card Background Color"
+msgstr "卡片背景颜色"
+
+msgid "Button Color"
+msgstr "按钮颜色"
+
+msgid "Button Text Color"
+msgstr "按钮文字颜色"
+
+msgid "Custom CSS"
+msgstr "自定义 CSS"
+
+msgid "Enable Social Login"
+msgstr "启用社会化登录"
+
+msgid "API Endpoint URL"
+msgstr "聚合登录接口地址"
+
+msgid "Defaults to <a href=\"%1$s\" target=\"_blank\" rel=\"noopener\">%1$s</a>. You can enter a custom URL if you self-host the aggregated login service."
+msgstr "默认使用 <a href=\"%1$s\" target=\"_blank\" rel=\"noopener\">%1$s</a>，如果您自建了聚合登录程序可在此填入自定义地址。"
+
+msgid "Enter App ID"
+msgstr "请输入知我云 App ID"
+
+msgid "Enter App Key"
+msgstr "请输入知我云 App Key"
+
+msgid "Enabled Platforms"
+msgstr "启用的平台"
+
+msgid "Auto-register New Users"
+msgstr "未绑定用户自动注册"
+
+msgid "When enabled, new users logging in via social login will automatically have a WordPress account created."
+msgstr "开启后，通过社会化登录的新用户将自动创建 WordPress 账号"
+
+msgid "Custom Callback URL"
+msgstr "自定义回调地址"
+
+msgid "Leave blank to use default"
+msgstr "留空则使用默认"
+
+msgid "Default callback URL: %s"
+msgstr "默认回调地址：%s"
+
+msgid "Save Settings"
+msgstr "保存设置"
+
+msgid "Theme Integration Shortcodes"
+msgstr "主题集成短代码"
+
+msgid "If your theme has a custom login page, use the following shortcodes to embed Swift Login features into your theme template:"
+msgstr "如果您的主题有自定义登录页面，可使用以下短代码将 Swift Login 的功能嵌入到主题模板中："
+
+msgid "Passkey Login Button"
+msgstr "Passkey 登录按钮"
+
+msgid "Renders the Passkey login button on your custom login page."
+msgstr "在主题登录页面中输出 Passkey 登录按钮"
+
+msgid "Social Login Buttons"
+msgstr "社会化登录按钮组"
+
+msgid "Renders the social login button group on your custom login page."
+msgstr "在主题登录页面中输出社会化登录按钮组"
+
+msgid "PHP Template Call"
+msgstr "PHP 模板调用"
+
+msgid "Call this function inside your login form template to automatically output all enabled login methods."
+msgstr "在主题模板的登录表单内调用此函数，可自动输出所有已启用的登录方式"
+
+msgid "Thank you for using <a href=\"%3$s\" target=\"_blank\" rel=\"noopener\">Swift Login</a>, a <a href=\"%2$s\" target=\"_blank\" rel=\"noopener\">WordPress</a> plugin by <a href=\"%1$s\" target=\"_blank\" rel=\"noopener\">ZevoST</a>."
+msgstr "感谢您使用 <a href=\"%1$s\" target=\"_blank\" rel=\"noopener\">ZevoST</a> 开发的 <a href=\"%2$s\" target=\"_blank\" rel=\"noopener\">WordPress</a> 插件 <a href=\"%3$s\" target=\"_blank\" rel=\"noopener\">Swift Login</a>"
+
+msgid "Could not retrieve the social account identifier."
+msgstr "无法获取用户唯一标识"
+
+msgid "View on GitHub"
+msgstr "在 GitHub 上查看"
+
+msgid "This feature integrates with <a href=\"%s\" target=\"_blank\" rel=\"noopener\">Zhiwo Cloud Social Login</a>. Please register on that platform, create an application, and enter the App ID and App Key below."
+msgstr "本功能对接 <a href=\"%s\" target=\"_blank\" rel=\"noopener\">知我云聚合登录</a>，请前往该平台注册并创建应用，获取 App ID 和 App Key 后填入下方。"
+
+msgid "Button Style"
+msgstr "按钮样式"
+
+msgid "Icon + Text"
+msgstr "图标 + 文字"
+
+msgid "Icon Only"
+msgstr "仅图标"
+
+msgid "List"
+msgstr "列表"
+
+msgid "Platform Name"
+msgstr "平台名称"
+

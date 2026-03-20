@@ -40,6 +40,10 @@
             $('.social-platform-cb').each(function () {
                 $(this).prop('checked', platforms.indexOf($(this).val()) !== -1);
             });
+
+            // Button style
+            var btnStyle = d.social_button_style || 'icon-text';
+            $('input[name="social_button_style"][value="' + btnStyle + '"]').prop('checked', true);
         });
     }
 
@@ -88,6 +92,7 @@
             social_appid:             $('#social_appid').val(),
             social_appkey:            $('#social_appkey').val(),
             social_platforms:         platforms,
+            social_button_style:      $('input[name="social_button_style"]:checked').val() || 'icon-text',
             social_auto_register:     $('#social_auto_register').is(':checked'),
             social_redirect_uri:      $('#social_redirect_uri').val(),
             social_api_base:          $('#social_api_base').val(),
@@ -95,8 +100,8 @@
         };
 
         if (data.disable_password_login) {
-            if (!confirm('⚠️ 危险操作\n\n开启后，所有用户（包括管理员）将无法使用用户名和密码登录！\n\n请确认您已经成功设置了 Passkey 或社会化登录，否则将无法登录您的网站。\n\n确定要开启吗？')) {
-                $btn.prop('disabled', false).text('保存设置');
+            if (!confirm('Warning: Dangerous action!\n\nOnce enabled, all users (including administrators) will be unable to log in with username and password!\n\nPlease confirm that you have successfully set up a Passkey or social login, otherwise you will be locked out of your site.\n\nAre you sure you want to enable this?')) {
+                $btn.prop('disabled', false).text('Save Settings');
                 return;
             }
         }
@@ -116,7 +121,7 @@
         }).fail(function () {
             showNotice(cfg.strings.saveError, 'error');
         }).always(function () {
-            $btn.prop('disabled', false).text('保存设置');
+            $btn.prop('disabled', false).text('Save Settings');
         });
     });
 

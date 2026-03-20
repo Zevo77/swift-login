@@ -1,6 +1,6 @@
 === Swift Login ===
-Contributors: Zevo
-Tags: passkey, webauthn, login, social login, login page
+Contributors: zevo
+Tags: passkey, webauthn, login, social login, passwordless
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -8,63 +8,104 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Swift Login 为 WordPress 提供 Passkey 无密码登录、登录页面美化，以及聚合社会化登录功能。
+Passkey passwordless login, login page customization, and social login for WordPress.
 
 == Description ==
 
-Swift Login 是一个功能丰富的 WordPress 登录增强插件，主要功能包括：
+Swift Login enhances the WordPress login experience with three powerful features:
 
-**Passkey 无密码登录**
-* 基于 WebAuthn 标准的 Passkey 登录
-* 支持 Face ID、Touch ID、Windows Hello 等生物识别
-* 用户可在个人资料页管理多个 Passkey
-* 支持 ES256 和 RS256 凭据
+**Passkey Passwordless Login**
 
-**登录页面美化**
-* 现代化卡片式登录界面
-* 可自定义 Logo、背景色、按钮色等
-* 支持自定义 CSS
-* 响应式设计
+* WebAuthn-based passkey authentication
+* Supports Face ID, Touch ID, Windows Hello, and other biometric authenticators
+* Users can manage multiple passkeys from their profile page
+* Supports ES256 and RS256 credentials
+* Option to disable password login entirely
 
-**社会化登录（可选）**
-* 对接知我云聚合登录 (u.zevost.com)
-* 支持 QQ、微信、支付宝、微博、GitHub、Google 等 14 个平台
-* 未绑定用户可自动注册
-* 灵活的回调地址配置
+**Login Page Customization**
+
+* Modern card-style login interface
+* Customizable logo, background color, button color, and more
+* Custom CSS support
+* Responsive design
+
+**Social Login (Optional)**
+
+* Integrates with Zhiwo Cloud aggregated social login (u.zevost.com)
+* Supports 14 platforms: QQ, WeChat, Alipay, Weibo, Baidu, Douyin, Huawei, Xiaomi, Google, Microsoft, Twitter, DingTalk, Gitee, and GitHub
+* Auto-register new users on first social login
+* Flexible callback URL configuration
+* Users can bind/unbind social accounts from their profile page
 
 == Installation ==
 
-1. 上传插件文件夹到 `/wp-content/plugins/Swift-Login` 目录
-2. 在 WordPress 后台「插件」页面激活插件
-3. 进入「设置 > Swift Login」配置插件
+1. Upload the plugin folder to `/wp-content/plugins/Swift-Login`
+2. Activate the plugin from the WordPress admin **Plugins** page
+3. Go to **Settings > Swift Login** to configure the plugin
 
-== 短代码 ==
+**Social Login Setup**
 
-插件提供以下短代码，可用于主题模板或页面编辑器中，将登录按钮嵌入任意位置：
+1. Register an account at https://u.zevost.com and create an application
+2. Copy your App ID and App Key
+3. Enter the App ID and App Key in the plugin settings
+4. Set the callback URL in the Zhiwo Cloud dashboard to the URL shown in the plugin settings
+5. Select which social platforms to enable
+
+== Shortcodes ==
+
+Swift Login provides two shortcodes for embedding login buttons anywhere on your site (e.g. custom login pages, sidebars, or page builders):
 
 **[swift_passkey_button]**
-输出 Passkey 登录按钮。适合嵌入自定义登录页面或侧边栏。
+Renders the Passkey login button.
 
 **[swift_social_buttons]**
-输出社会化登录按钮组（需先在设置中启用社会化登录并完成配置）。
+Renders the social login button group. Requires social login to be enabled and configured in settings.
 
-示例：
+Example usage:
 
     [swift_passkey_button]
     [swift_social_buttons]
 
-== 社会化登录配置 ==
+== Source Code ==
 
-1. 前往 https://u.zevost.com 注册账号并创建应用
-2. 获取 App ID 和 App Key
-3. 在插件设置中填入 App ID 和 App Key
-4. 在知我云后台将回调地址设置为插件显示的回调地址
-5. 选择需要启用的登录平台
+This plugin is open source. The source code is available on GitHub:
+https://github.com/Zevo77/swift-login
+
+Bug reports and pull requests are welcome.
+
+== Frequently Asked Questions ==
+
+= Does Passkey login work on all browsers? =
+
+Passkey is supported in all modern browsers including Chrome, Firefox, Safari, and Edge. The button will be automatically disabled if the browser does not support the WebAuthn API.
+
+= Can I disable password login entirely? =
+
+Yes. Enable the "Disable Password Login" option in the plugin settings. Users will only be able to log in via Passkey or social login.
+
+= Is social login required? =
+
+No. Social login is completely optional and disabled by default. Passkey login and login page customization work independently.
+
+= Where are passkeys stored? =
+
+Passkey credentials are stored in the `wp_swift_login_passkeys` database table on your own server. No data is sent to external services for passkey authentication.
+
+== Screenshots ==
+
+1. Login page with Passkey button and social login buttons
+2. Plugin settings page
+3. User profile page — manage passkeys and social account bindings
 
 == Changelog ==
 
 = 1.0.0 =
-* 初始版本发布
-* Passkey 登录注册功能
-* 登录页面美化
-* 聚合社会化登录集成
+* Initial release
+* Passkey registration and login
+* Login page customization
+* Aggregated social login integration
+
+== Upgrade Notice ==
+
+= 1.0.0 =
+Initial release.

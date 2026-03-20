@@ -29,7 +29,7 @@
                 if (res.success && res.data && res.data.url) {
                     window.location.href = res.data.url;
                 } else {
-                    var msg = res.data && res.data.message ? res.data.message : '获取登录地址失败';
+                    var msg = res.data && res.data.message ? res.data.message : 'Failed to get login URL.';
                     alert(msg);
                     document.querySelectorAll('.swift-social-btn').forEach(function (b) {
                         b.disabled = false;
@@ -38,7 +38,7 @@
                 }
             })
             .catch(function () {
-                alert('网络错误，请重试');
+                alert('Network error. Please try again.');
                 document.querySelectorAll('.swift-social-btn').forEach(function (b) {
                     b.disabled = false;
                 });

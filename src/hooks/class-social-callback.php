@@ -28,7 +28,7 @@ class Social_Callback
         $type = sanitize_key($_GET['type'] ?? '');
 
         if (empty($code) || empty($type)) {
-            $this->redirect_with_error(__('回调参数缺失', 'swift-login'));
+            $this->redirect_with_error(__('Missing callback parameters.', 'swift-login'));
             return;
         }
 
@@ -36,7 +36,7 @@ class Social_Callback
         $appkey = Helper::get_option('social_appkey', '');
 
         if (empty($appid) || empty($appkey)) {
-            $this->redirect_with_error(__('社会化登录配置错误', 'swift-login'));
+            $this->redirect_with_error(__('Social login configuration error.', 'swift-login'));
             return;
         }
 
@@ -46,14 +46,14 @@ class Social_Callback
         $response = wp_remote_get($api_url, ['timeout' => 15, 'sslverify' => true]);
 
         if (is_wp_error($response)) {
-            $this->redirect_with_error(__('无法连接到登录服务', 'swift-login'));
+            $this->redirect_with_error(__('Could not connect to the login service.', 'swift-login'));
             return;
         }
 
         $body = json_decode(wp_remote_retrieve_body($response), true);
 
         if (!isset($body['code']) || $body['code'] !== 0) {
-            $msg = $body['msg'] ?? __('获取用户信息失败', 'swift-login');
+            $msg = $body['msg'] ?? __('Failed to retrieve user information.', 'swift-login');
             $this->redirect_with_error($msg);
             return;
         }
@@ -64,7 +64,7 @@ class Social_Callback
         $avatar       = esc_url_raw($body['faceimg'] ?? '');
 
         if (empty($social_uid)) {
-            $this->redirect_with_error(__('无法获取用户唯一标识', 'swift-login'));
+            $this->redirect_with_error(__('Could not retrieve the social account identifier.', 'swift-login'));
             return;
         }
 
@@ -83,7 +83,7 @@ class Social_Callback
             // Already bound — log in
             $user = get_user_by('id', $user_id);
             if (!$user) {
-                $this->redirect_with_error(__('用户不存在', 'swift-login'));
+                $this->redirect_with_error(__('User not found.', 'swift-login'));
                 return;
             }
             Social_Model::bind($user_id, $type, $social_uid, $access_token);

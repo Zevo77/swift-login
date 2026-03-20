@@ -164,6 +164,7 @@ class Application
             'social_auto_register'         => true,
             'social_redirect_uri'          => '',
             'social_api_base'              => '',
+            'social_button_style'          => 'icon-text',
         ];
 
         $existing = get_option('swift_login_options', []);

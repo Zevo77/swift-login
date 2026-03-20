@@ -76,6 +76,78 @@
 .swift-platform-item:hover { border-color: #2271b1; }
 .swift-platform-item input { margin: 0; }
 
+/* Button style picker */
+.swift-btn-style-picker {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.swift-btn-style-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.swift-btn-style-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.swift-btn-style-preview {
+    width: 180px;
+    min-height: 90px;
+    border: 2px solid #c3c4c7;
+    border-radius: 8px;
+    padding: 10px;
+    background: #f6f7f7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    transition: border-color .2s, box-shadow .2s;
+    overflow: hidden;
+}
+
+/* 预览区内的前台按钮缩小适配 */
+.swift-btn-style-preview .swift-btn {
+    font-size: 11px;
+    padding: 5px 6px;
+    margin-bottom: 0;
+    pointer-events: none;
+}
+
+.swift-btn-style-preview .swift-social-btn {
+    font-size: 10px;
+    padding: 5px 4px;
+}
+
+.swift-btn-style-preview .swift-social-btn img {
+    width: 16px;
+    height: 16px;
+}
+
+.swift-btn-style-option input:checked + .swift-btn-style-preview {
+    border-color: #2271b1;
+    box-shadow: 0 0 0 2px rgba(34,113,177,.2);
+    background: #f0f4fb;
+}
+
+.swift-btn-style-option:hover .swift-btn-style-preview {
+    border-color: #2271b1;
+}
+
+.swift-btn-style-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: #1d2327;
+}
+
+
 /* Notice */
 #swift-login-notice {
     padding: 10px 16px;

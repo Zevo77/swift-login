@@ -49,11 +49,11 @@ class Passkey
             'ajaxUrl'  => admin_url('admin-ajax.php'),
             'nonce'    => wp_create_nonce(SWIFT_LOGIN_NONCE),
             'strings'  => [
-                'loginWithPasskey'   => __('使用 Passkey 登录', 'swift-login'),
-                'registerPasskey'    => __('注册 Passkey', 'swift-login'),
-                'passkeyNotSupported'=> __('您的浏览器不支持 Passkey', 'swift-login'),
-                'error'              => __('登录失败，请重试', 'swift-login'),
-                'success'            => __('登录成功', 'swift-login'),
+                'loginWithPasskey'   => __('Login with Passkey', 'swift-login'),
+                'registerPasskey'    => __('Register Passkey', 'swift-login'),
+                'passkeyNotSupported'=> __('Your browser does not support Passkey.', 'swift-login'),
+                'error'              => __('Login failed. Please try again.', 'swift-login'),
+                'success'            => __('Login successful.', 'swift-login'),
             ],
         ]);
     }
@@ -62,10 +62,10 @@ class Passkey
     {
         ?>
         <div class="swift-login-passkey-wrap">
-            <div class="swift-login-divider"><span><?php esc_html_e('或者', 'swift-login'); ?></span></div>
+            <div class="swift-login-divider"><span><?php esc_html_e('or', 'swift-login'); ?></span></div>
             <button type="button" id="swift-passkey-login-btn" class="swift-btn swift-btn-passkey">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/><line x1="19" y1="11" x2="23" y2="11"/><line x1="21" y1="9" x2="21" y2="13"/></svg>
-                <?php esc_html_e('使用 Passkey 登录', 'swift-login'); ?>
+                <?php esc_html_e('Login with Passkey', 'swift-login'); ?>
             </button>
             <div id="swift-passkey-message" class="swift-passkey-message" style="display:none;"></div>
         </div>
@@ -77,14 +77,14 @@ class Passkey
         $passkeys = Passkey_Model::get_by_user($user->ID);
         ?>
         <div class="swift-login-profile-section">
-            <h2><?php esc_html_e('Passkey 管理', 'swift-login'); ?></h2>
+            <h2><?php esc_html_e('Passkey Management', 'swift-login'); ?></h2>
             <table class="form-table">
                 <tr>
-                    <th><?php esc_html_e('我的 Passkey', 'swift-login'); ?></th>
+                    <th><?php esc_html_e('My Passkeys', 'swift-login'); ?></th>
                     <td>
                         <div id="swift-passkey-list">
                         <?php if (empty($passkeys)) : ?>
-                            <p class="description"><?php esc_html_e('您还没有注册任何 Passkey。', 'swift-login'); ?></p>
+                            <p class="description"><?php esc_html_e('You have not registered any Passkeys yet.', 'swift-login'); ?></p>
                         <?php else : ?>
                             <ul class="swift-passkey-items">
                             <?php foreach ($passkeys as $pk) : ?>
@@ -93,11 +93,11 @@ class Passkey
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                                     </div>
                                     <div class="swift-passkey-info">
-                                        <span class="passkey-name"><?php echo esc_html($pk['name'] ?: __('未命名设备', 'swift-login')); ?></span>
-                                        <span class="passkey-date"><?php printf(esc_html__('添加于 %s', 'swift-login'), date_i18n(get_option('date_format'), strtotime($pk['created_at']))); ?></span>
+                                        <span class="passkey-name"><?php echo esc_html($pk['name'] ?: __('Unnamed device', 'swift-login')); ?></span>
+                                        <span class="passkey-date"><?php printf(esc_html__('Added on %s', 'swift-login'), date_i18n(get_option('date_format'), strtotime($pk['created_at']))); ?></span>
                                     </div>
                                     <button type="button" class="button swift-delete-passkey" data-id="<?php echo esc_attr($pk['id']); ?>">
-                                        <?php esc_html_e('删除', 'swift-login'); ?>
+                                        <?php esc_html_e('Delete', 'swift-login'); ?>
                                     </button>
                                 </li>
                             <?php endforeach; ?>
@@ -106,7 +106,7 @@ class Passkey
                         </div>
                         <p>
                             <button type="button" id="swift-register-passkey-btn" class="button button-primary">
-                                <?php esc_html_e('添加新 Passkey', 'swift-login'); ?>
+                                <?php esc_html_e('Add New Passkey', 'swift-login'); ?>
                             </button>
                         </p>
                         <input type="hidden" id="swift-profile-user-id" value="<?php echo esc_attr($user->ID); ?>">
@@ -127,13 +127,13 @@ class Passkey
         $bind_success  = !empty($_GET['swift_bind_success']);
         ?>
         <div class="swift-login-profile-section">
-            <h2><?php esc_html_e('社会化登录绑定', 'swift-login'); ?></h2>
+            <h2><?php esc_html_e('Social Login Connections', 'swift-login'); ?></h2>
             <?php if ($bind_success) : ?>
-            <div class="swift-passkey-message success" style="display:block;margin-bottom:12px;"><?php esc_html_e('绑定成功！', 'swift-login'); ?></div>
+            <div class="swift-passkey-message success" style="display:block;margin-bottom:12px;"><?php esc_html_e('Account linked successfully!', 'swift-login'); ?></div>
             <?php endif; ?>
             <table class="form-table">
                 <tr>
-                    <th><?php esc_html_e('绑定平台', 'swift-login'); ?></th>
+                    <th><?php esc_html_e('Connected Platforms', 'swift-login'); ?></th>
                     <td>
                         <ul class="swift-social-bindings">
                         <?php foreach ($enabled as $type) :
@@ -147,16 +147,16 @@ class Passkey
                                 <div class="swift-social-binding-info">
                                     <span class="binding-name"><?php echo esc_html($label); ?></span>
                                     <span class="binding-status <?php echo $is_bound ? 'bound' : 'unbound'; ?>">
-                                        <?php echo $is_bound ? esc_html__('已绑定', 'swift-login') : esc_html__('未绑定', 'swift-login'); ?>
+                                        <?php echo $is_bound ? esc_html__('Connected', 'swift-login') : esc_html__('Not connected', 'swift-login'); ?>
                                     </span>
                                 </div>
                                 <?php if ($is_bound) : ?>
                                 <button type="button" class="button swift-unbind-social" data-type="<?php echo esc_attr($type); ?>">
-                                    <?php esc_html_e('解绑', 'swift-login'); ?>
+                                    <?php esc_html_e('Unlink', 'swift-login'); ?>
                                 </button>
                                 <?php else : ?>
                                 <button type="button" class="button button-primary swift-bind-social" data-type="<?php echo esc_attr($type); ?>">
-                                    <?php esc_html_e('绑定', 'swift-login'); ?>
+                                    <?php esc_html_e('Link', 'swift-login'); ?>
                                 </button>
                                 <?php endif; ?>
                             </li>

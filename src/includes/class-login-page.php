@@ -67,7 +67,7 @@ class Login_Page
         }
         return new \WP_Error(
             'password_login_disabled',
-            __('用户名密码登录已被禁用，请使用 Passkey 或社会化登录。', 'swift-login')
+            __('Username and password login is disabled. Please use Passkey or social login.', 'swift-login')
         );
     }
 
@@ -149,8 +149,8 @@ class Login_Page
         $all_platforms = Helper::all_social_platforms();
         ?>
         <div class="swift-login-social-wrap">
-            <div class="swift-login-divider"><span><?php esc_html_e('社会化登录', 'swift-login'); ?></span></div>
-            <div class="swift-login-social-buttons">
+            <div class="swift-login-divider"><span><?php esc_html_e('Social Login', 'swift-login'); ?></span></div>
+            <div class="swift-login-social-buttons swift-social-style-<?php echo esc_attr(Helper::get_social_button_style()); ?>">
                 <?php foreach ($platforms as $type) :
                     $label = $all_platforms[$type] ?? $type;
                 ?>
@@ -158,7 +158,7 @@ class Login_Page
                         class="swift-btn swift-social-btn swift-social-<?php echo esc_attr($type); ?>"
                         data-type="<?php echo esc_attr($type); ?>"
                         data-nonce="<?php echo esc_attr(wp_create_nonce(SWIFT_LOGIN_NONCE)); ?>">
-                    <img src="<?php echo esc_url(SWIFT_LOGIN_ASSETS_FRONTEND_URL . '/img/social/' . $type . '.png'); ?>"
+                    <img src="<?php $icon_map = ['twitter' => 'x']; echo esc_url(SWIFT_LOGIN_ASSETS_FRONTEND_URL . '/img/social/' . ($icon_map[$type] ?? $type) . '.png'); ?>"
                          alt="<?php echo esc_attr($label); ?>"
                          onerror="this.style.display='none'">
                     <span><?php echo esc_html($label); ?></span>
@@ -166,7 +166,7 @@ class Login_Page
                 <?php endforeach; ?>
             </div>
             <div id="swift-social-loading" style="display:none;text-align:center;padding:8px;">
-                <span><?php esc_html_e('正在跳转，请稍候…', 'swift-login'); ?></span>
+                <span><?php esc_html_e('Redirecting, please wait…', 'swift-login'); ?></span>
             </div>
         </div>
         <?php

@@ -40,7 +40,7 @@
             var ct = r.headers.get('content-type') || '';
             if (!ct.includes('application/json')) {
                 return r.text().then(function (t) {
-                    throw new Error(strings.error || '操作失败，请重试');
+                    throw new Error(strings.error || 'Operation failed. Please try again.');
                 });
             }
             return r.json();
@@ -159,7 +159,7 @@
                     return navigator.credentials.create({ publicKey: publicKey });
                 })
                 .then(function (cred) {
-                    var name = prompt('请为这个 Passkey 起个名字（可留空）', '') || '';
+                    var name = prompt('Enter a name for this Passkey (optional):', '') || '';
                     var resp = cred.response;
                     return post('swift_login_passkey_register_verify', {
                         id:   cred.id,
@@ -197,7 +197,7 @@
         var type = btn.getAttribute('data-type');
         var msg  = document.getElementById('swift-social-binding-message');
         btn.disabled = true;
-        btn.textContent = '跳转中…';
+        btn.textContent = 'Redirecting…';
 
         var formData = new FormData();
         formData.append('action', 'swift_login_social_bind_init');
@@ -211,13 +211,13 @@
                     window.location.href = res.data.url;
                 } else {
                     btn.disabled = false;
-                    btn.textContent = '绑定';
-                    if (msg) { msg.textContent = (res.data && res.data.message) || '获取绑定地址失败'; msg.className = 'swift-passkey-message error'; msg.style.display = 'block'; }
+                    btn.textContent = 'Link';
+                    if (msg) { msg.textContent = (res.data && res.data.message) || 'Failed to get link URL.'; msg.className = 'swift-passkey-message error'; msg.style.display = 'block'; }
                 }
             })
             .catch(function () {
                 btn.disabled = false;
-                btn.textContent = '绑定';
+                btn.textContent = 'Link';
             });
     });
 
@@ -231,7 +231,7 @@
         e.preventDefault();
         e.stopPropagation();
 
-        if (!confirm('确定要解绑该社会化登录账号吗？')) return;
+        if (!confirm('Are you sure you want to unlink this social account?')) return;
 
         var type = btn.getAttribute('data-type');
         var msg  = document.getElementById('swift-social-binding-message');
@@ -247,12 +247,12 @@
                     window.location.reload();
                 } else {
                     btn.disabled = false;
-                    if (msg) { msg.textContent = (res.data && res.data.message) || '解绑失败'; msg.className = 'swift-passkey-message error'; msg.style.display = 'block'; }
+                    if (msg) { msg.textContent = (res.data && res.data.message) || 'Failed to unlink.'; msg.className = 'swift-passkey-message error'; msg.style.display = 'block'; }
                 }
             })
             .catch(function () {
                 btn.disabled = false;
-                if (msg) { msg.textContent = '解绑请求失败，请重试'; msg.className = 'swift-passkey-message error'; msg.style.display = 'block'; }
+                if (msg) { msg.textContent = 'Unlink request failed. Please try again.'; msg.className = 'swift-passkey-message error'; msg.style.display = 'block'; }
             });
     });
 
@@ -266,7 +266,7 @@
         e.preventDefault();
         e.stopPropagation();
 
-        if (!confirm('确定要删除这个 Passkey 吗？')) return;
+        if (!confirm('Are you sure you want to delete this Passkey?')) return;
 
         var id = btn.getAttribute('data-id');
         var formData = new FormData();

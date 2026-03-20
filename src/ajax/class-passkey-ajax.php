@@ -45,7 +45,7 @@ class Passkey_Ajax
     private function verify_nonce(): void
     {
         if (!check_ajax_referer(SWIFT_LOGIN_NONCE, 'nonce', false)) {
-            wp_send_json_error(['message' => __('安全验证失败', 'swift-login')], 403);
+            wp_send_json_error(['message' => __('Security check failed.', 'swift-login')], 403);
         }
     }
 
@@ -90,7 +90,7 @@ class Passkey_Ajax
         $this->verify_nonce();
 
         if (!is_user_logged_in()) {
-            wp_send_json_error(['message' => __('请先登录后再注册 Passkey', 'swift-login')], 401);
+            wp_send_json_error(['message' => __('You must be logged in to register a Passkey.', 'swift-login')], 401);
         }
 
         $user    = wp_get_current_user();
@@ -160,12 +160,12 @@ class Passkey_Ajax
         $this->verify_nonce();
 
         if (!is_user_logged_in()) {
-            wp_send_json_error(['message' => __('请先登录', 'swift-login')], 401);
+            wp_send_json_error(['message' => __('You must be logged in.', 'swift-login')], 401);
         }
 
         $data = $this->get_post_data();
         if (empty($data['id']) || empty($data['response']['clientDataJSON']) || empty($data['response']['attestationObject'])) {
-            wp_send_json_error(['message' => __('数据不完整', 'swift-login')], 400);
+            wp_send_json_error(['message' => __('Incomplete data.', 'swift-login')], 400);
         }
 
         $user = wp_get_current_user();
@@ -175,14 +175,14 @@ class Passkey_Ajax
         $client_data     = json_decode($client_data_raw);
 
         if (empty($client_data->challenge)) {
-            wp_send_json_error(['message' => __('challenge 无效', 'swift-login')], 400);
+            wp_send_json_error(['message' => __('Invalid challenge.', 'swift-login')], 400);
         }
 
         $challenge_binary = $this->base64url_decode($client_data->challenge);
         $challenge_rec    = Challenge_Model::find($challenge_binary, 'register');
 
         if (!$challenge_rec || (int) $challenge_rec['user_id'] !== $user->ID) {
-            wp_send_json_error(['message' => __('challenge 不匹配或已过期', 'swift-login')], 400);
+            wp_send_json_error(['message' => __('Challenge mismatch or expired.', 'swift-login')], 400);
         }
 
         Challenge_Model::delete((int) $challenge_rec['id']);
@@ -207,7 +207,7 @@ class Passkey_Ajax
         $name          = sanitize_text_field($data['name'] ?? '');
 
         if (Passkey_Model::find_by_credential_id($credential_id)) {
-            wp_send_json_error(['message' => __('该 Passkey 已注册', 'swift-login')], 409);
+            wp_send_json_error(['message' => __('This Passkey is already registered.', 'swift-login')], 409);
         }
 
         $pk_id = Passkey_Model::create([
@@ -215,14 +215,14 @@ class Passkey_Ajax
             'credential_id' => $credential_id,
             'public_key'    => $attestation->credentialPublicKey,
             'sign_counter'  => $webAuthn->getSignatureCounter() ?? 0,
-            'name'          => $name ?: sprintf(__('Passkey %s', 'swift-login'), date('Y-m-d')),
+            'name'          => $name ?: sprintf( __('Passkey %s', 'swift-login'), date('Y-m-d') ),
         ]);
 
         if (!$pk_id) {
-            wp_send_json_error(['message' => __('保存失败', 'swift-login')], 500);
+            wp_send_json_error(['message' => __('Failed to save Passkey.', 'swift-login')], 500);
         }
 
-        wp_send_json_success(['message' => __('Passkey 注册成功', 'swift-login'), 'id' => $pk_id]);
+        wp_send_json_success(['message' => __('Passkey registered successfully.', 'swift-login'), 'id' => $pk_id]);
     }
 
     // -------------------------------------------------------------------------
@@ -262,28 +262,28 @@ class Passkey_Ajax
 
         $data = $this->get_post_data();
         if (empty($data['id']) || empty($data['response']['clientDataJSON'])) {
-            wp_send_json_error(['message' => __('数据不完整', 'swift-login')], 400);
+            wp_send_json_error(['message' => __('Incomplete data.', 'swift-login')], 400);
         }
 
         $credential_id = $data['id'];
         $passkey       = Passkey_Model::find_by_credential_id($credential_id);
 
         if (!$passkey) {
-            wp_send_json_error(['message' => __('未找到对应的 Passkey', 'swift-login')], 404);
+            wp_send_json_error(['message' => __('Passkey not found.', 'swift-login')], 404);
         }
 
         $client_data_raw = $this->base64url_decode($data['response']['clientDataJSON']);
         $client_data     = json_decode($client_data_raw);
 
         if (empty($client_data->challenge)) {
-            wp_send_json_error(['message' => __('challenge 无效', 'swift-login')], 400);
+            wp_send_json_error(['message' => __('Invalid challenge.', 'swift-login')], 400);
         }
 
         $challenge_binary = $this->base64url_decode($client_data->challenge);
         $challenge_rec    = Challenge_Model::find($challenge_binary, 'login');
 
         if (!$challenge_rec) {
-            wp_send_json_error(['message' => __('challenge 不匹配或已过期', 'swift-login')], 400);
+            wp_send_json_error(['message' => __('Challenge mismatch or expired.', 'swift-login')], 400);
         }
 
         Challenge_Model::delete((int) $challenge_rec['id']);
@@ -312,7 +312,7 @@ class Passkey_Ajax
         $user    = get_user_by('id', $user_id);
 
         if (!$user) {
-            wp_send_json_error(['message' => __('用户不存在', 'swift-login')], 404);
+            wp_send_json_error(['message' => __('User not found.', 'swift-login')], 404);
         }
 
         wp_set_current_user($user_id);
@@ -321,7 +321,7 @@ class Passkey_Ajax
 
         $redirect = apply_filters('login_redirect', admin_url(), '', $user);
         wp_send_json_success([
-            'message'  => __('登录成功', 'swift-login'),
+            'message'  => __('Login successful.', 'swift-login'),
             'redirect' => $redirect,
         ]);
     }
@@ -335,20 +335,20 @@ class Passkey_Ajax
         $this->verify_nonce();
 
         if (!is_user_logged_in()) {
-            wp_send_json_error(['message' => __('请先登录', 'swift-login')], 401);
+            wp_send_json_error(['message' => __('You must be logged in.', 'swift-login')], 401);
         }
 
         $id   = (int) ($_POST['passkey_id'] ?? 0);
         $user = wp_get_current_user();
 
         if (!$id) {
-            wp_send_json_error(['message' => __('参数错误', 'swift-login')], 400);
+            wp_send_json_error(['message' => __('Invalid parameter.', 'swift-login')], 400);
         }
 
         if (Passkey_Model::delete($id, $user->ID)) {
-            wp_send_json_success(['message' => __('已删除', 'swift-login')]);
+            wp_send_json_success(['message' => __('Passkey deleted.', 'swift-login')]);
         } else {
-            wp_send_json_error(['message' => __('删除失败', 'swift-login')], 500);
+            wp_send_json_error(['message' => __('Failed to delete Passkey.', 'swift-login')], 500);
         }
     }
 

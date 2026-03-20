@@ -23,7 +23,7 @@ class Admin
     public function register_menu(): void
     {
         add_options_page(
-            __('Swift Login 设置', 'swift-login'),
+            __('Swift Login Settings', 'swift-login'),
             __('Swift Login', 'swift-login'),
             'manage_options',
             'swift-login',
@@ -39,9 +39,15 @@ class Admin
 
         wp_enqueue_style('wp-color-picker');
         wp_enqueue_style(
+            'swift-login-login',
+            SWIFT_LOGIN_ASSETS_FRONTEND_URL . '/css/login.css',
+            [],
+            SWIFT_LOGIN_VERSION
+        );
+        wp_enqueue_style(
             'swift-login-admin',
             SWIFT_LOGIN_ASSETS_ADMIN_URL . '/css/admin.css',
-            [],
+            ['swift-login-login'],
             SWIFT_LOGIN_VERSION
         );
         wp_enqueue_script(
@@ -55,9 +61,9 @@ class Admin
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'nonce'   => wp_create_nonce(SWIFT_LOGIN_NONCE),
             'strings' => [
-                'saved'      => __('设置已保存', 'swift-login'),
-                'saveError'  => __('保存失败，请重试', 'swift-login'),
-                'saving'     => __('保存中…', 'swift-login'),
+                'saved'      => __('Settings saved.', 'swift-login'),
+                'saveError'  => __('Failed to save. Please try again.', 'swift-login'),
+                'saving'     => __('Saving…', 'swift-login'),
             ],
         ]);
     }
@@ -65,7 +71,7 @@ class Admin
     public function render_page(): void
     {
         if (!current_user_can('manage_options')) {
-            wp_die(__('权限不足', 'swift-login'));
+            wp_die(__('Insufficient permissions.', 'swift-login'));
         }
         require_once SWIFT_LOGIN_VIEWS_ADMIN_DIR . '/settings.php';
     }
@@ -75,12 +81,12 @@ class Admin
         check_ajax_referer(SWIFT_LOGIN_NONCE, 'nonce');
 
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(['message' => __('权限不足', 'swift-login')], 403);
+            wp_send_json_error(['message' => __('Insufficient permissions.', 'swift-login')], 403);
         }
 
         $raw = isset($_POST['settings']) ? json_decode(stripslashes($_POST['settings']), true) : null;
         if (!is_array($raw)) {
-            wp_send_json_error(['message' => __('数据格式错误', 'swift-login')], 400);
+            wp_send_json_error(['message' => __('Invalid data format.', 'swift-login')], 400);
         }
 
         $allowed = [
@@ -99,6 +105,7 @@ class Admin
             'social_appkey'             => 'string',
             'social_platforms'          => 'array',
             'social_auto_register'      => 'bool',
+            'social_button_style'       => 'string',
             'social_redirect_uri'       => 'url',
             'social_api_base'           => 'url',
             'disable_password_login'    => 'bool',
@@ -135,7 +142,7 @@ class Admin
         }
 
         Helper::update_options($sanitized);
-        wp_send_json_success(['message' => __('设置已保存', 'swift-login')]);
+        wp_send_json_success(['message' => __('Settings saved.', 'swift-login')]);
     }
 
     public function get_settings(): void
@@ -143,7 +150,7 @@ class Admin
         check_ajax_referer(SWIFT_LOGIN_NONCE, 'nonce');
 
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(['message' => __('权限不足', 'swift-login')], 403);
+            wp_send_json_error(['message' => __('Insufficient permissions.', 'swift-login')], 403);
         }
 
         wp_send_json_success(Helper::get_options());

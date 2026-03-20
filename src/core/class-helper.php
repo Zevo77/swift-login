@@ -50,6 +50,12 @@ class Helper
         return is_array($platforms) ? $platforms : [];
     }
 
+    public static function get_social_button_style(): string
+    {
+        $style = self::get_option('social_button_style', 'icon-text');
+        return in_array($style, ['icon-text', 'icon-only', 'list'], true) ? $style : 'icon-text';
+    }
+
     public static function get_rp_id(): string
     {
         return parse_url(home_url(), PHP_URL_HOST);
@@ -82,17 +88,17 @@ class Helper
     {
         return [
             'qq'        => 'QQ',
-            'wx'        => '微信',
-            'alipay'    => '支付宝',
-            'sina'      => '微博',
-            'baidu'     => '百度',
-            'douyin'    => '抖音',
-            'huawei'    => '华为',
-            'xiaomi'    => '小米',
+            'wx'        => 'WeChat',
+            'alipay'    => 'Alipay',
+            'sina'      => 'Sina',
+            'baidu'     => 'Baidu',
+            'douyin'    => 'TikTok',
+            'huawei'    => 'HUAWEI',
+            'xiaomi'    => 'XiaoMi',
             'google'    => 'Google',
             'microsoft' => 'Microsoft',
-            'twitter'   => 'Twitter',
-            'dingtalk'  => '钉钉',
+            'twitter'   => 'X',
+            'dingtalk'  => 'DingTalk',
             'gitee'     => 'Gitee',
             'github'    => 'GitHub',
         ];
