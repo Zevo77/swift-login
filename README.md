@@ -1,10 +1,10 @@
-![Swift Login]([https://github.com/Zevo77/swift-login/blob/main/bar.png](https://github.com/Zevo77/swift-login/blob/main/assets/banner-1544x500.png))
+![Swift Login](https://github.com/Zevo77/swift-login/blob/main/assets/banner-1544x500.png)
 # Swift Login
 
 为 WordPress 提供 Passkey 无密码登录、登录页面美化，以及聚合社会化登录功能。
 
 插件正在接受Wordpress Team审查
-![Swift Login screenshot-1]([https://github.com/Zevo77/swift-login/blob/main/bar2.png](https://github.com/Zevo77/swift-login/blob/main/assets/screenshot-1.png))
+![Swift Login screenshot-1](https://github.com/Zevo77/swift-login/blob/main/assets/screenshot-1.png)
 
 **Passkey 无密码登录**
 
